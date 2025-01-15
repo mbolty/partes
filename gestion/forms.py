@@ -24,6 +24,9 @@ class ParteTrabajoForm(forms.ModelForm):
     class Meta:
         model = ParteTrabajo
         fields = ['fecha', 'cliente', 'tecnico', 'tiempo_empleado', 'observaciones']
+        widgets = {
+            'fecha': forms.DateInput(attrs={'type':'date'}),
+        }
 
 class DetalleParteForm(forms.ModelForm):
     class Meta:
