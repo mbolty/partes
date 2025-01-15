@@ -18,7 +18,7 @@ class Tecnico(models.Model):
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField(blank=True, null=True)
-    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    precio = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     iva = models.DecimalField(max_digits=4, decimal_places=2, default=21)
 
     def precio_con_iva(self):
