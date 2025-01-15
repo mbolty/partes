@@ -29,15 +29,14 @@ class ProductoForm(forms.ModelForm):
 
 class ParteTrabajoForm(forms.ModelForm):
     fecha = forms.DateField(
-        widget=forms.DateInput(attrs={'type':'date'}),
+        'fecha': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
         input_formats=['%Y-%m-%d', '%d/%m/%Y', '%m/%d/%Y'],
     )
     class Meta:
         model = ParteTrabajo
         fields = ['fecha', 'cliente', 'tecnico', 'tiempo_empleado', 'observaciones']
         widgets = {
-            'fecha': forms.DateInput(attrs={'type':'date'}),
-            'descripcion': forms.Textarea(attrs={'rows': 3}),
+            'descripcion': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),  # Ajusta 'rows' según necesidad     
         }
         def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
