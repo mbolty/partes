@@ -26,7 +26,22 @@ class ParteTrabajoForm(forms.ModelForm):
         fields = ['fecha', 'cliente', 'tecnico', 'tiempo_empleado', 'observaciones']
         widgets = {
             'fecha': forms.DateInput(attrs={'type':'date'}),
+            'descripcion': forms.Textarea(attrs={'rows': 3}),
         }
+        def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['tecnico'] = forms.ModelChoiceField(
+            queryset=Tecnico.objects.all(),
+            empty_label="Selecciona un tecnico", # Texto para la opción vacía
+            label="Tecnico", # Sobreescribe la etiqueta del campo si es necesario
+            widget=forms.Select(attrs={'class': 'form-control'}) # Añade una clase CSS de Bootstrap
+        )
+        self.fields['cliente'] = forms.ModelChoiceField(
+            queryset=Cliente.objects.all(),
+            empty_label="Selecciona un cliente",
+            label="Cliente",
+            widget=forms.Select(attrs={'class': 'form-control'})
+        )
 
 class DetalleParteForm(forms.ModelForm):
     class Meta:
