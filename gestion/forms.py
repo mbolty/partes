@@ -5,11 +5,22 @@ class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = ['nombre', 'direccion', 'telefono', 'email']
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'direccion': forms.Textarea(attrs={'class': 'form-control'}),
+            'telefono': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+        }
+
 
 class TecnicoForm(forms.ModelForm):
     class Meta:
         model = Tecnico
         fields = ['nombre', 'telefono']
+        widgets = {
+          'nombre': forms.TextInput(attrs={'class': 'form-control'}),           
+          'telefono': forms.TextInput(attrs={'class': 'form-control'}),      
+        }
 
 class ProductoForm(forms.ModelForm):
     class Meta:
