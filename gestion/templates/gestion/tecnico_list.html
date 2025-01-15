@@ -1,0 +1,31 @@
+{% extends "gestion/base.html" %}
+{% block title %}Lista de Técnicos{% endblock %}
+{% block content %}
+<h1>Técnicos</h1>
+<a href="{% url 'tecnico_create' %}" class="btn btn-primary mb-3">Agregar Técnico</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Especialidad</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tecnico in tecnicos %}
+        <tr>
+            <td>{{ tecnico.nombre }}</td>
+            <td>{{ tecnico.especialidad }}</td>
+            <td>{{ tecnico.telefono }}</td>
+            <td>
+                <a href="{% url 'tecnico_update' tecnico.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'tecnico_delete' tecnico.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'index' %}" class="btn btn-secondary">Volver a Inicio</a>
+{% endblock %}
+

@@ -1,0 +1,14 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+     <title>Eliminar Parte de Trabajo</title>
+ </head>
+ <body>
+     <h1>¿Estás seguro de que deseas eliminar a {{ parte.nombre }}?</h1>
+     <form method="post">
+         {% csrf_token %}
+         <button type="submit">Eliminar</button>
+         <a href="{% url 'cliente_list' %}">Cancelar</a>
+     </form>
+ </body>
+ </html>

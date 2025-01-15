@@ -1,0 +1,36 @@
+{% extends "gestion/base.html" %}
+{% block title %}Lista de Partes de Trabajo{% endblock %}
+{% block content %}
+<h1>Partes de Trabajo</h1>
+<a href="{% url 'parte_create' %}" class="btn btn-primary mb-3">Agregar Parte</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Técnico</th>
+            <th>Tiempo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for parte in partes %}
+        <tr>
+            <td>{{ parte.id }}</td>
+            <td>{{ parte.fecha }}</td>
+            <td>{{ parte.cliente.nombre }}</td>
+            <td>{{ parte.tecnico.nombre }}</td>
+            <td>{{ parte.tiempo_empleado }} horas</td>
+            <td>
+                <a href="{% url 'parte_update' parte.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'parte_delete' parte.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'index' %}" class="btn btn-secondary">Volver a Inicio</a>
+{% endblock %}
+
+

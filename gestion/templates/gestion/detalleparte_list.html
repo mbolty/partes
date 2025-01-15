@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalles de Partes</title>
+</head>
+<body>
+    <h1>Lista de Detalles de Partes</h1>
+    <a href="{% url 'detalleparte_create' %}">Agregar Detalle</a>
+    <ul>
+        {% for detalle in detalles %}
+        <li>
+            Parte: {{ detalle.parte }} - Producto: {{ detalle.producto }} - Cantidad: {{ detalle.cantidad }}
+            <a href="{% url 'detalleparte_update' detalle.id %}">Editar</a>
+            <a href="{% url 'detalleparte_delete' detalle.id %}">Eliminar</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

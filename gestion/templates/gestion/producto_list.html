@@ -1,0 +1,32 @@
+{% extends "gestion/base.html" %}
+{% block title %}Lista de Productos{% endblock %}
+{% block content %}
+<h1>Productos</h1>
+<a href="{% url 'producto_create' %}" class="btn btn-primary mb-3">Agregar Producto</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio (sin IVA)</th>
+            <th>Precio (con IVA)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>{{ producto.precio }} €</td>
+            <td>{{ producto.precio_con_iva|floatformat:2 }} €</td>
+            <td>
+                <a href="{% url 'producto_update' producto.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'producto_delete' producto.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'index' %}" class="btn btn-secondary">Volver a Inicio</a>
+{% endblock %}
