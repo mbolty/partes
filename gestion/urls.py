@@ -1,6 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.views.generic import RedirectView
+from django.contrib import admin
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -27,8 +28,8 @@ urlpatterns = [
     path('partes/<int:parte_id>/materiales/nuevo/', views.detalleparte_add, name='detalleparte_add'),
     path('partes/materiales/eliminar/<int:pk>/', detalleparte_delete, name='detalleparte_delete'),
     path('', RedirectView.as_view(url='/login/', permanent=False)),
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name 'registration/logged_out.html'), name='logout'),
     path('gestion/', include('gestion.urls')),
     path('admin/', admin.site.urls),
 
